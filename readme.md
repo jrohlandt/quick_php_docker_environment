@@ -17,12 +17,21 @@ docker compose up -d
 ```
 
 5. Install php framework (Example below uses Laravel):
+Shell into php container:
 ```
 docker compose exec php bash
-composer global require laravel/installer
-~/.compser/vendor/bin/laravel new server -f 
-// Follow Laravel installer wizard but don't let it run migrations (you still need to config mysql in laravel's .env file).
 ```
+Install Laravel Installer
+```
+composer global require laravel/installer
+```
+Create new Laravel app in the "server" directory. 
+Note: Don't let Laravel Installer run your migrations (db connection is not configured in Laravel's .env file yet)
+```
+~/.composer/vendor/bin/laravel new server -f 
+```
+Note: Follow Laravel installer wizard but don't let it run migrations (you still need to config mysql in laravel's .env file).
+
 
 6. In your editor open server/.env to configure MySQL connection:
 ```
