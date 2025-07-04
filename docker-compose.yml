@@ -1,0 +1,51 @@
+services:
+  php:
+    build:
+      args:
+        user: xxxxxx_user
+        uid: 1000
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: xxxxxx-php
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    networks:
+      - xxxxxx_network
+
+  nginx:
+    image: nginx:alpine
+    container_name: xxxxxx-nginx
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8000:80" # To avoid conflict with another running container. Change to 8080:80 for example.
+    depends_on:
+      - php
+    networks:
+      - xxxxxx_network
+
+  db:
+    image: mysql:8
+    container_name: xxxxxx-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: xxxxxx
+      MYSQL_ROOT_PASSWORD: root
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    ports:
+      - 3306:3306 # To avoid conflict with another running container. Change to 3307:3306 for example. Remember to use 3307 in your DBMS.
+    volumes:
+      - xxxxxx_dbdata:/var/lib/mysql
+    networks:
+      - xxxxxx_network
+   
+networks:
+  xxxxxx_network:
+    driver: bridge
+
+volumes:
+  xxxxxx_dbdata:
