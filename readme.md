@@ -71,7 +71,9 @@ docker compose exec php bash
 cd server
 composer require laravel/breeze --dev
 php artisan breeze:install
-# I don't install node in my PHP container. I just run it locally.
+php artisan migrate:fresh
+php artisan db:seed
+# I don't install node in my PHP container. I just run it locally, so exit container or open another terminal window.
 exit
 cd server
 npm i
