@@ -70,4 +70,10 @@ Note: Laravel Breeze still works with Laravel 12 (https://github.com/laravel/bre
 docker compose exec php bash
 cd server
 composer require laravel/breeze --dev
+php artisan breeze:install
+# I don't install node in my PHP container. I just run it locally.
+exit
+cd server
+npm i
+npm run dev
 ```
