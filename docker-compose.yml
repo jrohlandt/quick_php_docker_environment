@@ -28,18 +28,14 @@ services:
       - xxxxxx_network
 
   db:
-    image: mysql:8
-    container_name: xxxxxx-mysql
-    restart: unless-stopped
+    image: postgres
+    restart: always
+    # set shared memory limit when using docker compose
+    shm_size: 128mb
     environment:
-      MYSQL_DATABASE: xxxxxx
-      MYSQL_ROOT_PASSWORD: root
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
+      POSTGRES_PASSWORD: password
     ports:
-      - 3306:3306 # To avoid conflict with another running container. Change to 3307:3306 for example. Remember to use 3307 in your DBMS.
-    volumes:
-      - xxxxxx_dbdata:/var/lib/mysql
+      - 5432:5432 # To avoid conflict with another running container. Change to 5433:5432 for example. Remember to use 5433 in your DBMS.
     networks:
       - xxxxxx_network
    

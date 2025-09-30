@@ -1,7 +1,7 @@
-Quickly configure a PHP and MySQL docker environment.
+Quickly configure a PHP and PostgreSQL docker environment.
 
 * No local PHP installation needed.
-* You replace or remove the mysql config in docker-compose.yml
+
 
 ### Just follow these steps:
 1. Clone this repo
@@ -9,8 +9,10 @@ Quickly configure a PHP and MySQL docker environment.
 git clone git@github.com:jrohlandt/quick_php_docker_environment.git your_app_name && cd your_app_name
 ```
 
-2. In docker-compose.yml replace xxxxxx with your_app_name .
-3. In docker-compose.yml change nginx and mysql port bindings to avoid conflict with other containers (E.g. 8080:80 for nginx and 3307:3306 for mysql).
+2. In docker-compose.yml replace xxxxxx with your_app_name.
+
+3. In docker-compose.yml change nginx and PostgreSQL port bindings to avoid conflict with other containers (E.g. 8080:80 for nginx and 3307:3306 for PostgreSQL).
+
 4. Build and start containers:
 ```
 docker compose up -d
@@ -30,17 +32,15 @@ Note: Don't let Laravel Installer run your migrations (db connection is not conf
 ```
 ~/.composer/vendor/bin/laravel new server -f 
 ```
-Note: Follow Laravel installer wizard but don't let it run migrations (you still need to config mysql in laravel's .env file).
 
-
-6. In your editor open server/.env to configure MySQL connection:
+6. In your editor open server/.env to configure the database connection:
 ```
-DB_CONNECTION=mysql
+DB_CONNECTION=pgsql
 DB_HOST=db
-DB_PORT=3306
-DB_DATABASE=your_app_name
-DB_USERNAME=root
-DB_PASSWORD=root
+DB_PORT=5432
+DB_DATABASE=server # Laravel migrate will ask if you want to create a database named "server".
+DB_USERNAME=postgres
+DB_PASSWORD=password
 ```
 
 7. Run Laravel migrations:
