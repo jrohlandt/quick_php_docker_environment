@@ -63,3 +63,11 @@ But for a separate frontend app that will consume your Laravel app you can creat
 Just pretend the client directory is it's own app and install React/Vue in there.
 
 I typically do that outside of any containers. I find it easier to manage Node installation and versions locally with NVM than with docker containers.
+
+
+Note: Laravel Breeze still works with Laravel 12 (https://github.com/laravel/breeze)
+```
+docker compose exec php bash
+cd server
+composer require laravel/breeze --dev
+```
