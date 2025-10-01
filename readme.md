@@ -11,7 +11,7 @@ git clone git@github.com:jrohlandt/quick_php_docker_environment.git your_app_nam
 
 2. In docker-compose.yml replace all instances of xxxxxx with your_app_name.
 
-3. In docker-compose.yml change nginx and PostgreSQL port bindings to avoid conflict with other containers (E.g. 8080:80 for nginx and 3307:3306 for PostgreSQL).
+3. In docker-compose.yml change nginx and PostgreSQL port bindings to avoid conflict with other containers (E.g. 8080:80 for nginx and 5433:5432 for PostgreSQL).
 
 4. Build and start containers:
 ```
