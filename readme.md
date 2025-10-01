@@ -9,7 +9,7 @@ Quickly configure a PHP and PostgreSQL docker environment.
 git clone git@github.com:jrohlandt/quick_php_docker_environment.git your_app_name && cd your_app_name
 ```
 
-2. In docker-compose.yml replace xxxxxx with your_app_name.
+2. In docker-compose.yml replace all instances of xxxxxx with your_app_name.
 
 3. In docker-compose.yml change nginx and PostgreSQL port bindings to avoid conflict with other containers (E.g. 8080:80 for nginx and 3307:3306 for PostgreSQL).
 
@@ -38,7 +38,7 @@ Note: Don't let Laravel Installer run your migrations (db connection is not conf
 DB_CONNECTION=pgsql
 DB_HOST=db
 DB_PORT=5432
-DB_DATABASE=server # Laravel migrate will ask if you want to create a database named "server".
+DB_DATABASE=server # artisan migrate will ask if you want to create a database named "server".
 DB_USERNAME=postgres
 DB_PASSWORD=password
 ```
